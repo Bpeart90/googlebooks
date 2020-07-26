@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
+import Nav from "./components/Nav";
 import Header from "./components/Header";
 import Wrapper from "./components/Wrapper";
 
@@ -16,17 +16,23 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <NavBar />
-          <Header />
-          <Wrapper>
-            <Route exact path="/" component={Search} />
-            <Route exact path="/search" component={Search} />
-            <Route exact path="/saved" component={Saved} />
-            <Route exact path="/noMatch" component={NoMatch} />
-          </Wrapper>
+          <Nav />
+          <Header>
+            <Wrapper>
+              <Route exact path={["/", "/Search"]}>
+                <Search />
+              </Route>
+              <Route exact path="/Saved">
+                <Saved />
+              </Route>
+              <Route exact path="/NoMatch">
+                <NoMatch />
+              </Route>
+            </Wrapper>
+          </Header>
         </div>
       </Router>
-    )
+    );
   };
 };
 

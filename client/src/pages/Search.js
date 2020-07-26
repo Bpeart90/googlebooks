@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "../components/Form";
-import Results from "../components/Results";
 import API from "../utils/API";
+import Results from "../components/Results";
 
 class Search extends React.Component {
     state = {
@@ -52,8 +52,9 @@ class Search extends React.Component {
                     handleFormSubmit={this.handleFormSubmit}
                 />
                 <div className="container">
-                    <h2>Results</h2>
-                    <Results books={this.state.books} />
+                    <h2>Saved books</h2>
+                    <Results books={this.state.savedBooks} />
+
                 </div>
             </div>
         )
