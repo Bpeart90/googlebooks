@@ -17,19 +17,19 @@ class App extends Component {
       <Router>
         <div>
           <Nav />
-          <Header>
-            <Wrapper>
-              <Route exact path={["/", "/Search"]}>
-                <Search />
-              </Route>
-              <Route exact path="/Saved">
-                <Saved />
-              </Route>
-              <Route exact path="/NoMatch">
-                <NoMatch />
-              </Route>
-            </Wrapper>
-          </Header>
+          <Header />
+          <Wrapper>
+            <Route exact path={["/", "/Search"]}>
+              <Search />
+            </Route>
+            <Route exact path="/Saved">
+              <Saved />
+            </Route>
+            <Route exact path="/NoMatch">
+              <NoMatch />
+            </Route>
+          </Wrapper>
+
         </div>
       </Router>
     );
