@@ -5,13 +5,10 @@ import Results from "../components/Results";
 
 class Search extends React.Component {
     state = {
+        userInput: "",
         value: "",
         books: []
     };
-
-    componentDidMount() {
-        this.searchBook();
-    }
 
     makeBook = bookData => {
         return {
@@ -25,25 +22,33 @@ class Search extends React.Component {
     }
 
     searchBook = query => {
-        API.getBook(query)
-            .then(res => this.setState({ books: res.data.items.map(bookData => this.makeBook(bookData)) }))
+        API.getGoogle(query)
+            // .then(res => this.setState({ books: res.data.items.map(bookData => this.makeBook(bookData)) }))
+            // .then(console.log(this.state.books))
+            .then(res => this.setState({ books: res.data }))
+            // .then(res => console.log(res))
+            // .then(res => console.log(res.data.map(book => this.setState({ books: book }))))
+
             .catch(err => console.error(err));
     };
 
     handleInputChange = event => {
-        const name = event.target.name;
+        // const name = event.target.name;
         const value = event.target.value;
         this.setState({
-            [name]: value
+            userInput: value
         });
+        console.log(value)
     };
 
     handleFormSubmit = event => {
         event.preventDefault();
-        this.searchBook(this.state.search);
+        this.searchBook(this.state.userInput);
+
     };
 
     render() {
+        console.log(this.state.books)
         return (
             <div>
                 <Form
@@ -54,6 +59,18 @@ class Search extends React.Component {
                 <div className="container">
                     <h2>Saved books</h2>
                     <Results books={this.state.savedBooks} />
+
+                    {this.state.books.map((book, i) => {
+                        return <div className="bookCard">
+                            <h3 key={i}>{book.volumeInfo.title}</h3>
+                            <p key={i + 1}>{book.volumeInfo.authors} </p>
+                            <p key={i + 1}>{book.volumeInfo.description} </p>
+                            <p key={i + 1}>{book.volumeInfo.imageLinks.smallThumbnail} </p>
+                            <p key={i + 1}>{book.volumeInfo.infoLink} </p>
+                        </div>
+
+
+                    })}
 
                 </div>
             </div>

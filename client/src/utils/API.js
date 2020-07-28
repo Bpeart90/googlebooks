@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     // Gets all books
-    getBook: function () {
+    getBooks: function () {
         return axios.get("/api/books");
     },
     // Gets the book with the given id
@@ -16,5 +16,8 @@ export default {
     // Saves a book to the database
     saveBook: function (bookData) {
         return axios.post("/api/books", bookData);
+    },
+    getGoogle: function (query) {
+        return axios.get("/api/google", { params: { q: "title:" + query } });
     }
 };
