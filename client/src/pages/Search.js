@@ -46,6 +46,9 @@ class Search extends React.Component {
         this.searchBook(this.state.userInput);
 
     };
+    saveBook = (book) => {
+        console.log(book)
+    }
 
     render() {
         console.log(this.state.books)
@@ -61,12 +64,13 @@ class Search extends React.Component {
                     <Results books={this.state.savedBooks} />
 
                     {this.state.books.map((book, i) => {
-                        return <div className="bookCard">
-                            <h3 key={i}>{book.volumeInfo.title}</h3>
-                            <p key={i + 1}>{book.volumeInfo.authors} </p>
-                            <p key={i + 1}>{book.volumeInfo.description} </p>
-                            <p key={i + 1}>{book.volumeInfo.imageLinks.smallThumbnail} </p>
-                            <p key={i + 1}>{book.volumeInfo.infoLink} </p>
+                        return <div className="bookCard" key={i}>
+                            <h3>{book.volumeInfo.title}</h3>
+                            <p>{book.volumeInfo.authors} </p>
+                            <p>{book.volumeInfo.description} </p>
+                            <p>{book.volumeInfo.imageLinks.smallThumbnail} </p>
+                            <p>{book.volumeInfo.infoLink} </p>
+                            <button onClick={() => this.saveBook(book)}>Save</button>
                         </div>
 
 
